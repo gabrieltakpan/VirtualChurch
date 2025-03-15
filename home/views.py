@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from datetime import date
-from .models import Event, LiveStream, Resource, Sermon
+from .models import  LiveStream, Resource, Sermon
 from django.shortcuts import render, get_object_or_404
 from django.utils.timezone import now
 
@@ -13,17 +13,6 @@ def about(request):
 def resources(request):
     resources = Resource.objects.all()
     return render(request, 'resources.html', {'resources': resources})
-
-def live_event(request):
-    # Get today's date
-    today = now().date()
-
-    # Try to find a live stream happening today
-    live_stream = LiveStream.objects.filter(
-        start_time__date=today, end_time__date=today, is_live=True
-    ).first()
-
-    return render(request, 'live_event.html', {'live_stream': live_stream})
 
 
 def sermon_list(request):

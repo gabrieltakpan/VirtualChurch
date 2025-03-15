@@ -6,10 +6,10 @@ from home import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('event/', include('events.urls')),
     path('', include('home.urls')),
     path('', views.index, name='index'),
     path('about/', views.about, name='about'),
-    path('live_event/', views.live_event, name='live_event'),
     path('resources/', views.resources, name='resources'),
     path('sermons/', views.sermon_list, name='sermon_list'),  # List view
     path('sermons/<int:pk>/', views.sermon_detail, name='sermon_detail'), 
