@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="col-lg-9 mx-auto col-11">
+    <h2 class="text-center"><br> <span></span> </h2>
+<div class="container"> Fashion</h2>
+    <h2 class="text-center my-4">Sermons</h2>
+    <div class="row">
+        {% for sermon in sermons %}
+        <div class="col-md-4">
+            <div class="card mb-4">
+                {% if sermon.image %}
+                <img src="{{ sermon.image.url }}" class="card-img-top" alt="{{ sermon.title }}">
+                {% endif %}
+                <div class="card-body text-center">
+                    <h5 class="card-title">{{ sermon.title }}</h5>
+                    <a href="{% url 'sermon_detail' sermon.pk %}" class="btn btn-success">View Sermon</a>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <p>No sermons available.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

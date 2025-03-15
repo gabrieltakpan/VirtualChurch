@@ -1,0 +1,64 @@
+
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+{% block title %} <title>Virtual Church : Home</title>{% endblock %}
+<section class="slick-slideshow">   
+  <div class="slick-custom">
+      <img src="{% static 'images/slideshow/medium-shot-business-women-high-five.jpeg' %}" class="img-fluid" alt="">
+
+      <div class="slick-bottom">
+          <div class="container">
+              <div class="row">
+                  <div class="col-lg-6 col-10">
+                      <h3 class="slick-title">Experience Faith Anytime, Anywhere</h3>
+
+                      <p class="lead text-white mt-lg-3 mb-lg-5">Our Virtual Church is a place where you can connect with God, grow spiritually, and engage with a loving community</p>
+
+                      <a href="#" class="btn custom-btn">Learn more about us</a>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  <div class="slick-custom">
+      <img src="{% static 'images/slideshow/team-meeting-renewable-energy-project.jpeg' %}" class="img-fluid" alt="">
+
+      <div class="slick-bottom">
+          <div class="container">
+              <div class="row">
+                  <div class="col-lg-6 col-10">
+                      <h3 class="slick-title">Join Us for Worship</h3>
+
+                      <p class="lead text-white mt-lg-3 mb-lg-5">Every week, we come together online to worship, pray, and learn from God’s Word. Join our live-streamed services or watch on-demand at your convenience.</p>
+
+                      <a href="product.html" class="btn custom-btn">Explore Sermons</a>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  <div class="slick-custom">
+      <img src="{% static 'images/slideshow/two-business-partners-working-together-office-computer.jpeg' %}" class="img-fluid" alt="">
+
+      <div class="slick-bottom">
+          <div class="container">
+              <div class="row">
+                  <div class="col-lg-6 col-10">
+                      <h3 class="slick-title">Grow in Your Faith</h3>
+
+                      <p class="lead text-white mt-lg-3 mb-lg-5">We offer various resources to help you on your spiritual journey, including online sermons, daily devotionals, and faith-based courses. Explore our content and take your faith to the next level.</p>
+
+                      <a href="contact.html" class="btn custom-btn">View Resources</a>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+
+</section>
+
+
+{% endblock content %}
