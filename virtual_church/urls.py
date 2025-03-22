@@ -4,6 +4,7 @@ from django.conf import settings
 from django.conf.urls.static import static  # Import static helper function
 from home import views
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('event/', include('events.urls')),
@@ -13,6 +14,7 @@ urlpatterns = [
     path('resources/', views.resources, name='resources'),
     path('sermons/', views.sermon_list, name='sermon_list'),  # List view
     path('sermons/<int:pk>/', views.sermon_detail, name='sermon_detail'), 
+    
 ]
 
 # Serve media files during development

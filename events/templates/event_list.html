@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<header class="site-header section-padding d-flex justify-content-center align-items-center">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-lg-10 col-12">
+                <h1>
+                    <span class="d-block text-primary">Select your</span>
+                    <span class="d-block text-dark">favorite Events</span>
+                </h1>
+            </div>
+        </div>
+    </div>
+</header>
+<section class="products section-padding">
+    <div class="container">
+        <div class="row">
+            
+            
+
+            <div class="col-12">
+                <h2 class="mb-5">All Events</h2>
+            </div>
+            {% for event in events %}
+            <div class="col-lg-4 col-12 mb-3">
+                <div class="product-thumb">
+                    <a href="product-detail.html">
+                        <img src="{% static 'images/product/evan-mcdougall-qnh1odlqOmk-unsplash.jpeg' %}" class="img-fluid product-image" alt="">
+                    </a>
+
+                    <div class="product-top d-flex">
+                        <span class="product-alert">{{ event.event_type }}</span>
+
+                        <a href="#" class="bi-heart-fill product-icon ms-auto"></a>
+                    </div>
+
+                    <div class="product-info d-flex">
+                        <div>
+                            <h5 class="product-title mb-0">
+                                <a href="{% url 'event_details' event.id %}" class="product-title-link">{{ event.title }}</a>
+                            </h5>
+
+                            <p class="product-p">{{ event.event_type }} </p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <p>No events available.</p>
+            {% endfor %}
+           
+
+        </div>
+    </div>
+</section>
+
+
+{% endblock %}

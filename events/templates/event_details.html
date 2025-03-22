@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<header class="site-header section-padding d-flex justify-content-center align-items-center">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-lg-10 col-12">
+                <h1>
+                    <span class="d-block text-primary">Events</span>
+                    <span class="d-block text-dark">{{ event.title }}</span>
+                </h1>
+            </div>
+        </div>
+    </div>
+</header>
+
+<section class="product-detail section-padding">
+    <div class="container">
+        <div class="row">
+            {% if event %}
+            {% with event.stream_url|slice:"32:" as video_id %}
+            <div class="col-lg-6 col-12">
+                <div class="product-thumb">
+                     <iframe width="650" height="400" src="https://www.youtube.com/embed/{{ video_id }}" 
+                    frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                </iframe>
+                </div>
+            </div>
+            {% endwith %}
+            {% else %}
+            <div class="col-12">
+                <h2 class="mb-5">There is currently no live streaming.</h2>
+            </div>
+
+            {% endif %}
+            <div class="col-lg-6 col-12">
+                <div class="product-info d-flex">
+                    <div>
+                        <h2 class="product-title mb-0">{{ event.title }}</h2>
+                        <p class="product-p"><strong>Start Date:</strong> {{ event.start_date }}</p>
+                        <p class="product-p"><strong>End Date:</strong> {{ event.end_date }}</p>
+                    </div>
+                </div>
+
+                <div class="product-description">
+
+                    <strong class="d-block mt-4 mb-2">Description</strong>
+                    <p class="product-p">{{ event.description }}</p>
+                    <p class="d-block mt-4 mb-2"></p>
+                </div>
+
+                <div class="product-cart-thumb row">
+                    <div class="col-lg-6 col-12 mt-4 mt-lg-0">
+                        <a href="{% url 'event_list' %}" class="btn custom-btn cart-btn" data-bs-toggle="modal" data-bs-target="#cart-modal">
+                            Back to Event List
+                        </a>                        
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</section>
+
+{% endblock %}
