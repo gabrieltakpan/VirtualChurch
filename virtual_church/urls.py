@@ -8,6 +8,7 @@ from home import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('event/', include('events.urls')),
+    path('member/', include('member.urls')),
     path('', include('home.urls')),
     path('', views.index, name='index'),
     path('about/', views.about, name='about'),

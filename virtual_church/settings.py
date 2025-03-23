@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     'home', 
     'events', 
     'member', 
+    'bootstrap4',
 ]
 
 MIDDLEWARE = [
@@ -68,8 +69,13 @@ WSGI_APPLICATION = 'virtual_church.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'production',  # Azure MySQL database name
+        'USER': 'gabrieltakpan',      # Azure MySQL username
+        'PASSWORD': 'Just19839@',  # Azure MySQL password
+        'HOST': 'church-production.mysql.database.azure.com',  # Azure MySQL host
+        'PORT': '3306',                 # MySQL default port
+        
     }
 }
 
@@ -105,17 +111,33 @@ USE_I18N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/5.1/howto/static-files/
+# Azure Storage Configuration
+# Azure Storage Configuration
+AZURE_ACCOUNT_NAME = 'mychurchstorage'
+AZURE_ACCOUNT_KEY = 'M0n4o74oVkMobjLdH3Uv2PM/K26IU4Ws5qp/DW+EBM4QFkvl3zxWAmdNrbbTkUUYKxwGu8aUEPV6+AStKTUs4A=='
+AZURE_CONTAINER_STATIC = 'static'
+AZURE_CONTAINER_MEDIA = 'media'
+AZURE_CUSTOM_DOMAIN = f'{AZURE_ACCOUNT_NAME}.blob.core.windows.net'
 
-# URL prefix for static files
-STATIC_URL = '/static/'
+DEFAULT_FILE_STORAGE = 'storages.backends.azure_storage.AzureStorage'
+STATICFILES_STORAGE = 'storages.backends.azure_storage.AzureStorage'
+
+STATIC_LOCATION = 'static'
+MEDIA_LOCATION = 'media'
+
+STATIC_URL = f'https://{AZURE_CUSTOM_DOMAIN}/{STATIC_LOCATION}/'
+MEDIA_URL = f'https://{AZURE_CUSTOM_DOMAIN}/{MEDIA_LOCATION}/'
+
+# Set a dummy STATIC_ROOT directory
+STATIC_ROOT = BASE_DIR / "staticfiles"  # This is a dummy directory
+
+# Local static files directory for additional development static files
 STATICFILES_DIRS = [BASE_DIR / "static"]
-STATIC_ROOT = BASE_DIR / "staticfiles"
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-# Default primary key field type
-# https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
+
+
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'member.CustomUser'
+
+LOGIN_REDIRECT_URL = '/'  # Redirect to home page after login
+LOGOUT_REDIRECT_URL = '/'  # Redirect to home page after logout
