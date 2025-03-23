@@ -114,7 +114,7 @@ USE_TZ = True
 # Azure Storage Configuration
 # Azure Storage Configuration
 AZURE_ACCOUNT_NAME = 'mychurchstorage'
-AZURE_ACCOUNT_KEY = 'M0n4o74oVkMobjLdH3Uv2PM/K26IU4Ws5qp/DW+EBM4QFkvl3zxWAmdNrbbTkUUYKxwGu8aUEPV6+AStKTUs4A=='
+AZURE_ACCOUNT_KEY = os.environ.get('AZURE_STORAGE_ACCOUNT_KEY')
 AZURE_CONTAINER_STATIC = 'static'
 AZURE_CONTAINER_MEDIA = 'media'
 AZURE_CUSTOM_DOMAIN = f'{AZURE_ACCOUNT_NAME}.blob.core.windows.net'
