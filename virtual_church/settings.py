@@ -16,6 +16,7 @@ SECRET_KEY = 'django-insecure-!#oh9l9gg=6dp_a$v)7h_ak_%!g!um@d39%oy=t24a897!hl%x
 DEBUG = True
 
 ALLOWED_HOSTS = ['virtualchurch.azurewebsites.net', 'localhost', '127.0.0.1']
+CSRF_TRUSTED_ORIGINS = ['https://virtualchurch.azurewebsites.net']
 
 
 
