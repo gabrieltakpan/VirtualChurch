@@ -27,10 +27,10 @@
             {% for event in events %}
             <div class="col-lg-4 col-12 mb-3">
                 <div class="product-thumb">
-                    <a href="product-detail.html">
+                    <a href="{% url 'event_details' event.id %}">
                         <img src="{% static 'images/product/evan-mcdougall-qnh1odlqOmk-unsplash.jpeg' %}" class="img-fluid product-image" alt="">
                     </a>
-
+                    <br>
                     <div class="product-top d-flex">
                         <span class="product-alert">{{ event.event_type }}</span>
 
