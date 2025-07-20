@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from datetime import date
-from .models import  LiveStream, Resource, Sermon
+from .models import  Resource, Sermon
 from django.shortcuts import render, get_object_or_404
 from django.utils.timezone import now
 

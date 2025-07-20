@@ -4,18 +4,6 @@ import urllib.parse
 from django.conf import settings
 
 
-class LiveStream(models.Model):
-    title = models.CharField(max_length=255)
-    description = models.TextField()
-    stream_url = models.URLField(help_text="YouTube Live URL")
-    start_time = models.DateTimeField()
-    end_time = models.DateTimeField(null=True, blank=True)
-    created_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    is_live = models.BooleanField(default=False)
-
-    def __str__(self):
-        return self.title
-
 class Sermon(models.Model):
     title = models.CharField(max_length=255)
     description = models.TextField()
