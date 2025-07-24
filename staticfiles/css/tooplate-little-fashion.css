@@ -520,7 +520,7 @@ strong {
 }
 
 .slick-title {
-  color: var(--primary-color);
+  color: var(--primary-color-title);
 }
 
 .slick-custom {
@@ -1199,9 +1199,9 @@ button:focus:not(:focus-visible) {
 }
 
 .eventSection {
-  background-color: #FF4400;
-  padding-left: 5rem;
-  padding-right: 5rem;
+  background-color: var(--primary-color);
+  padding-left: 10rem;
+  padding-right: 10rem;
   padding-top: 4rem;
   padding-bottom: 1rem;
 }
@@ -1218,7 +1218,7 @@ button:focus:not(:focus-visible) {
   overflow: hidden;
   border-top: 1px solid gray;
   width: 100%;
-  max-height: 350px;
+  height: 250px;
   background-color: white;
 }
 .eventInfo {
@@ -1230,7 +1230,7 @@ button:focus:not(:focus-visible) {
 }
 .eventImage {
   position: relative;
-  height: 350px !important;
+  height: 100%;
 
   img {
       max-height: 100%;
