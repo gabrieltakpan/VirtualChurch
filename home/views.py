@@ -26,3 +26,6 @@ def sermon_detail(request, pk):
     """ View to display a single sermon with full details """
     sermon = get_object_or_404(Sermon, pk=pk)  # Get the specific sermon or return 404
     return render(request, 'sermon_detail.html', {'sermon': sermon})
+
+def donate(request):
+    return render(request, 'donate.html')

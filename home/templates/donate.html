@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+<title>Virtual Church: Donate</title>
+{% endblock %}
+
+{% block content %}
+<section class="preloader-container">
+    <div class="preloader">
+        <div class="spinner">
+            <span class="sk-inner-circle"></span>
+        </div>
+    </div>
+</section>
+
+<main>
+    <section class="section-padding" id="section_3">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 col-12">
+                    <div class="text-center mb-5">
+                        <h2 class="mb-3">Support Our Mission</h2>
+                        <p>Your generous donations help us continue our work in the community and spread our message. Every contribution makes a difference.</p>
+                    </div>
+
+                    <div class="card border-0 shadow-lg">
+                        <div class="card-body p-5">
+                            <h4 class="card-title text-center mb-4">Make a Donation</h4>
+                            
+                            <!-- Donation Form -->
+                            <form action="#" method="post" class="row g-3">
+                                {% csrf_token %}
+                                
+                                <div class="col-12">
+                                    <label for="amount" class="form-label">Amount (NGN)</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text">₦</span>
+                                        <input type="number" class="form-control" id="amount" name="amount" placeholder="1000.00" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-12">
+                                    <label for="name" class="form-label">Full Name</label>
+                                    <input type="text" class="form-control" id="name" name="name" required>
+                                </div>
+
+                                <div class="col-12">
+                                    <label for="email" class="form-label">Email Address</label>
+                                    <input type="email" class="form-control" id="email" name="email" required>
+                                </div>
+
+                                <!-- Payment details would go here. This is a placeholder. -->
+                                <div class="col-12 text-center">
+                                    <p class="text-muted">Secure payment processing powered by Stripe.</p>
+                                    <button type="submit" class="btn btn-primary w-100">Donate Now</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+{% endblock %}
