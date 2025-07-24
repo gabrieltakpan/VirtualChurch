@@ -9,6 +9,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
+        {% comment %} <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script> {% endcomment %}
         {% block title %}{% endblock %}
 
         <!-- CSS FILES -->
@@ -24,6 +25,7 @@
         <link rel="stylesheet" href="{% static 'css/slick.css' %}"/>
 
         <link href="{% static 'css/tooplate-little-fashion.css' %}" rel="stylesheet">
+        <link href="{% static 'css/custom_styles.css' %}" rel="stylesheet">
         
 <!--
 
@@ -66,22 +68,22 @@ https://www.tooplate.com/view/2127-little-fashion
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav mx-auto">
                             <li class="nav-item">
-                                <a class="nav-link active" href="{% url 'index' %}">Home</a>
+                                <a class="nav-link {% if request.resolver_match.url_name == 'index' %}active{% endif %}" href="{% url 'index' %}">Home</a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="{% url 'live_event' %}">Live Events</a>
+                                <a class="nav-link {% if request.resolver_match.url_name == 'live_event' %}active{% endif %}" href="{% url 'live_event' %}">Live Events</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{% url 'event_list' %}">Events</a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link" href="{% url 'sermon_list' %}">Sermon</a>
+                                <a class="nav-link {% if request.resolver_match.url_name == 'event_list' %}active{% endif %}" href="{% url 'event_list' %}">Events</a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="{% url 'resources' %}">Resources</a>
+                                <a class="nav-link {% if request.resolver_match.url_name == 'sermon_list' %}active{% endif %}" href="{% url 'sermon_list' %}">Sermon</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link {% if request.resolver_match.url_name == 'resources' %}active{% endif %}" href="{% url 'resources' %}">Resources</a>
                             </li>
 
                             <li class="nav-item">
@@ -144,5 +146,16 @@ https://www.tooplate.com/view/2127-little-fashion
         <script src="{% static 'js/slick.min.js' %}"></script>
         <script src="{% static 'js/custom.js' %}"></script>
 
+
+        
+        
+
+        <!-- Alpine Plugins -->
+        {% comment %} <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/mask@3.x.x/dist/cdn.min.js"></script>
+        <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/collapse@3.x.x/dist/cdn.min.js"></script>
+        <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/focus@3.x.x/dist/cdn.min.js"></script> {% endcomment %}
+ 
+        <!-- Alpine Core -->
+        <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     </body>
 </html>

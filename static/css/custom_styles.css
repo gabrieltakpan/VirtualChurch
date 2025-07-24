@@ -1,0 +1,39 @@
+/* Add your custom CSS styles here */
+#staticEventDesc {
+    font-size: 1rem;
+}
+
+.eventSection {
+    background-color: #FF4400;
+    padding-left: 5rem;
+    padding-right: 5rem;
+    padding-top: 4rem;
+    padding-bottom: 1rem;
+}
+
+.social-icon-link--carousel::before {
+    color: white !important;
+    font-size: 1.5rem !important;
+}
+
+.social-icon-link--carousel:hover {
+    color: #FF4400 !important;
+}
+.event {
+    overflow: hidden;
+    border-top: 1px solid gray;
+    width: 100%;
+    background-color: white;
+}
+.eventInfo {
+    min-height: 210px !important;
+    height: fit-content;
+    margin-bottom: 10px;
+    overflow: hidden;
+    
+}
+
+/* .social-icon-link::before {
+    color: white !important;
+    font-size: 1.5rem !important;
+} */

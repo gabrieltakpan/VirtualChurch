@@ -54,3 +54,4 @@ class Resource(models.Model):
     def __str__(self):
         return f"{self.get_resource_type_display()}: {self.title}"
 
+

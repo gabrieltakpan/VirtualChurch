@@ -1,11 +1,13 @@
 from django.shortcuts import render
 from datetime import date
 from .models import  Resource, Sermon
+from events.models import Event
 from django.shortcuts import render, get_object_or_404
 from django.utils.timezone import now
 
 def index(request):
-    return render(request, 'index.html')
+    events = Event.objects.all()
+    return render(request, 'index.html', {'events': events})
 
 def about(request):
     return render(request, 'about.html')
