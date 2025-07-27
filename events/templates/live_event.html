@@ -1,50 +1,62 @@
-
 {% extends "base.html" %}
 {% load static %}
+
+{% block title %} 
+    <title>Virtual Church : Live Events</title>
+{% endblock %}
+
 {% block content %}
-{% block title %} <title>Virtual Church : Live Events</title>{% endblock %}
 
-<header class="site-header section-padding d-flex justify-content-center align-items-center">
-    <div class="container">
-        <div class="row">
 
-            <div class="col-lg-10 col-12">
-                <h1>
-                    <span class="d-block text-dark">Live Events</span>
-                </h1>
-            </div>
-        </div>
-    </div>
-</header>  
 <section class="product-detail section-padding">
     <div class="container">
         <div class="row">
-            <h2 class="mb-5"> <span>{{ live_stream.title }}</span></h2>
             {% if live_stream %}
-            {% with live_stream.stream_url|slice:"32:" as video_id %}
-            <div style="position: relative; width: 100%; padding-bottom: 56.25%; background: #000; overflow: hidden;">
-                <iframe 
-                    src="https://www.youtube.com/embed/{{ video_id }}" 
-                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" 
-                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
-                    allowfullscreen>
-                </iframe>
-            </div>
-            
+            <h2 class="mb-3">Live Events - <span class="text-secondary">{{ live_stream.title }}</span></h2>
+                
+                <!-- Display event time info -->
+                <p class="text-muted mb-4">
+                    {% if live_stream.is_live and live_stream.start_date <= now and live_stream.end_date >= now %}
+                        🔴 <strong>Live Now</strong> (Started {{ live_stream.start_date|date:"F j, Y, g:i a" }})
+                    {% elif live_stream.is_live %}
+                    🔴 <strong>Live Now</strong> (Started {{ live_stream.start_date|date:"F j, Y, g:i a" }})
+                    {% else %}
+                        ⏳ <strong>Scheduled Live</strong> (Ends {{ live_stream.end_date|date:"F j, Y, g:i a" }})
+                    {% endif %}
+                </p>
 
-            <div class="col-lg-4 mb-lg-0 mb-4 col-12">
-               
-            </div>
-            {% endwith %}
+                <!-- YouTube Embed -->
+                {% with live_stream.stream_url|slice:"32:" as video_id %}
+                    <div style="position: relative; width: 100%; padding-bottom: 56.25%; background: #000; overflow: hidden;">
+                        <iframe 
+                            src="https://www.youtube.com/embed/{{ video_id }}" 
+                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" 
+                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
+                        
+                    </div>
+                    <a 
+                    href="https://youtube.com/watch?v={{ video_id }}" 
+                    target="_blank" 
+                    class="btn btn-primary mt-3"
+                >
+                    💬 Comment on YouTube
+                </a>
+                {% endwith %}
+                    
+                <!-- Optional: Event Description -->
+                <div class="mt-4">
+                    <p>{{ live_stream.description }}</p>
+                </div>
+
             {% else %}
-            <div class="col-12">
-                <h2 class="mb-5">There is currently no live streaming.</h2>
-            </div>
-
+                <div class="col-12 text-center">
+                    <h2 class="mb-5">There are no live events at the moment.</h2>
+                    <p>Check back later or view our upcoming events.</p>
+                </div>
             {% endif %}
         </div>
     </div>
 </section>
-
-    
-{% endblock content %}
+{% endblock %}

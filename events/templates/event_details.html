@@ -1,20 +1,23 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
+<!-- Add this inside <head> of base.html -->
+    
+    <header class="site-header d-flex justify-content-center align-items-center"
+    style="padding: 30px 0;">
+<div class="container">
+    <div class="row">
+        <div class="col-lg-10 col-12">
+            <h2 class="mb-0">
+                <span class="text-primary">Events: </span>
+                <span class="text-dark">{{ event.title }}</span>
 
-<header class="site-header section-padding d-flex justify-content-center align-items-center">
-    <div class="container">
-        <div class="row">
-
-            <div class="col-lg-10 col-12">
-                <h1>
-                    <span class="d-block text-primary">Events</span>
-                    <span class="d-block text-dark">{{ event.title }}</span>
-                </h1>
-            </div>
+            </h2>
         </div>
     </div>
+</div>
 </header>
+
 
 <section class="product-detail section-padding">
     <div class="container">
@@ -31,7 +34,7 @@
             {% endwith %}
             {% else %}
             <div class="col-12">
-                <h2 class="mb-5">There is currently no live streaming.</h2>
+                <h2 class="mb-5">There is currently no Event.</h2>
             </div>
 
             {% endif %}
@@ -51,13 +54,24 @@
                     <p class="d-block mt-4 mb-2"></p>
                 </div>
 
-                <div class="product-cart-thumb row">
-                    <div class="col-lg-6 col-12 mt-4 mt-lg-0">
-                        <a href="{% url 'event_list' %}" class="btn custom-btn cart-btn" data-bs-toggle="modal" data-bs-target="#cart-modal">
-                            Back to Event List
-                        </a>                        
+                <div class="d-flex align-items-center gap-3 mt-4">
+    
+                    <!-- WhatsApp Share Button -->
+                    <div class="product-description mb-0">
+                        <a href="{{ whatsapp_share_url }}" target="_blank" class="btn btn-success">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
                     </div>
+                
+                    <!-- Back to Event List Button -->
+                    <div class="product-cart-thumb mb-0">
+                        <a href="{% url 'event_list' %}" class="btn custom-btn cart-btn">
+                            Back to Event List
+                        </a>
+                    </div>
+                
                 </div>
+                
 
             </div>
 
