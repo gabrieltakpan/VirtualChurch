@@ -23,15 +23,27 @@
     <div class="container">
         <div class="row">
             {% if event %}
-            {% with event.stream_url|slice:"32:" as video_id %}
             <div class="col-lg-6 col-12">
                 <div class="product-thumb">
-                     <iframe width="650" height="400" src="https://www.youtube.com/embed/{{ video_id }}" 
-                    frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-                </iframe>
+                    {% if event.thumbnail %}
+                    <img src="{% static 'images/product/' %}{{ event.thumbnail }}"
+                         class="img-fluid product-image"
+                         alt="{{ event.title }} Thumbnail"
+                         style="width: 100%; height: 400px; object-fit: cover;">
+                    {% elif event.stream_url %}
+                    {% with event.stream_url|slice:"32:" as video_id %}
+                    <iframe width="650" height="400" src="https://www.youtube.com/embed/{{ video_id }}" 
+                            frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                    </iframe>
+                    {% endwith %}
+                    {% else %}
+                    <img src="{% static 'images/default-event-thumbnail.jpeg' %}" 
+                         class="img-fluid product-image"
+                         alt="Default Thumbnail"
+                         style="width: 100%; height: 400px; object-fit: cover;">
+                    {% endif %}
                 </div>
             </div>
-            {% endwith %}
             {% else %}
             <div class="col-12">
                 <h2 class="mb-5">There is currently no Event.</h2>

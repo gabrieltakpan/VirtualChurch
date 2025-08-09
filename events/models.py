@@ -18,6 +18,7 @@ class Event(models.Model):
     description = models.TextField()
     start_date = models.DateTimeField()
     end_date = models.DateTimeField()   
+    thumbnail = models.CharField(max_length=255, blank=True, null=True)
     sermon = models.TextField(blank=True, null=True)
     stream_url = models.URLField(help_text="YouTube Live URL", blank=True, null=True)
     is_live = models.BooleanField(default=False)

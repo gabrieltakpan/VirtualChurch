@@ -97,11 +97,18 @@
     <div class="container">
         
         {% for event in events %}
-            {% comment %} {% if event.event_type == "HomePage" %} {% endcomment %}
+            {% if event.event_type.name == "HomePage" %}
             <div class="row py-4 event">
                 <div class="col-sm-5 eventImage">
                     <a href="{% url 'event_details' event.id %}">
-                        <img src="{% static 'images/baby_dedication.png' %}" class="product-image" alt="">
+                        {% if event.thumbnail %}
+                        <img src="{% static 'images/product/' %}{{ event.thumbnail }}"
+                             class="img-fluid product-image"
+                             alt="{{ event.title }} Thumbnail"
+                             style=" object-fit: cover;">
+                        {% else %}
+                        <img src="{% static 'images/default-event-thumbnail.jpeg' %}" class="product-image" alt="Default Thumbnail">
+                        {% endif %}
 
                     </a>
                     <div class="event-cross-date">
@@ -124,7 +131,7 @@
                 
                 </div>
             </div>
-            {% comment %} {% endif %} {% endcomment %}
+            {% endif %}
         {% empty %}
         <p>No events available.</p>
         {% endfor %}

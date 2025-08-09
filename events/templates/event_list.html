@@ -55,10 +55,17 @@
             <div class="col-lg-4 col-12 mb-3">
                 <div class="product-thumb">
                     <a href="{% url 'event_details' event.id %}">
-                        <img src="{% static 'images/product/evan-mcdougall-qnh1odlqOmk-unsplash.jpeg' %}"
+                        {% if event.thumbnail %}
+                        <img src="{% static 'images/product/' %}{{ event.thumbnail }}"
                              class="img-fluid product-image"
-                             alt=""
+                             alt="{{ event.title }} Thumbnail"
                              style="width: 100%; height: 300px; object-fit: cover;">
+                        {% else %}
+                        <img src="{% static 'images/default-event-thumbnail.jpeg' %}" 
+                             class="img-fluid product-image"
+                             alt="Default Thumbnail"
+                             style="width: 100%; height: 300px; object-fit: cover;">
+                        {% endif %}
                     </a>
                     
                     <br>
