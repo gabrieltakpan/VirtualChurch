@@ -21,10 +21,10 @@ class Event(models.Model):
     start_date = models.DateTimeField()
     end_date = models.DateTimeField()
     
-    attendance_count = models.JSONField(default=dict)  # Stores {'total': 0, 'members': 0, 'visitors': 0}
+    # attendance_count = models.JSONField(default=dict)  # Stores {'total': 0, 'members': 0, 'visitors': 0}
     
     sermon = models.TextField(blank=True, null=True)
-    status = models.CharField(max_length=10, choices=EVENT_STATUS_CHOICES, default='Active')
+    # status = models.CharField(max_length=10, choices=EVENT_STATUS_CHOICES, default='Active')
     stream_url = models.URLField(help_text="YouTube Live URL", blank=True, null=True)
     is_live = models.BooleanField(default=False)
     created_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)

@@ -520,7 +520,7 @@ strong {
 }
 
 .slick-title {
-  color: var(--primary-color-title);
+  color: var(--primary-color);
 }
 
 .slick-custom {
@@ -1238,7 +1238,7 @@ button:focus:not(:focus-visible) {
 }
 
 .event-cross-date {
-  background: rgba(61, 59, 77, 1);
+  background: rgba(61, 59, 77, 0.849);
   font-size: 15px !important;
   z-index: 1;
 
@@ -1252,4 +1252,6 @@ button:focus:not(:focus-visible) {
   align-items: center;
   position: absolute;
   right: 0px;
+  bottom: 0px;
 }
+

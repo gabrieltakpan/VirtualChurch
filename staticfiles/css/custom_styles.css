@@ -5,24 +5,25 @@
 
 .eventSection {
     background-color: #FF4400;
-    padding-left: 5rem;
-    padding-right: 5rem;
+    padding-left: 10rem;
+    padding-right: 10rem;
     padding-top: 4rem;
     padding-bottom: 1rem;
 }
 
-.social-icon-link--carousel::before {
+/* .social-icon-link--carousel::before {
     color: white !important;
     font-size: 1.5rem !important;
 }
 
 .social-icon-link--carousel:hover {
     color: #FF4400 !important;
-}
+} */
 .event {
     overflow: hidden;
     border-top: 1px solid gray;
     width: 100%;
+    height: 250px;
     background-color: white;
 }
 .eventInfo {
@@ -31,6 +32,32 @@
     margin-bottom: 10px;
     overflow: hidden;
     
+}
+.eventImage {
+    position: relative;
+    height: 100%;
+
+    img {
+        max-height: 100%;
+    }
+}
+  
+.event-cross-date {
+    background: rgba(61, 59, 77, 0.849);
+    font-size: 30px !important;
+    z-index: 1;
+  
+    border: none;
+    width: 97px;
+    height: 110px;
+    display: flex;
+    
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
 }
 
 /* .social-icon-link::before {

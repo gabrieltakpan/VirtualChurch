@@ -5,7 +5,7 @@
 {% block title %} <title>Virtual Church : Home</title>{% endblock %}
 <section class="slick-slideshow">   
   <div class="slick-custom">
-      <img src="{% static 'images/slideshow/medium-shot-business-women-high-five.jpeg' %}" class="img-fluid" alt="">
+      <img src="{% static 'images/slideshow/lighthouse.jpg' %}" class="img-fluid" alt="">
 
       <div class="slick-bottom">
           <div class="container">
@@ -34,7 +34,7 @@
   </div>
 
   <div class="slick-custom">
-      <img src="{% static 'images/slideshow/team-meeting-renewable-energy-project.jpeg' %}" class="img-fluid" alt="">
+      <img src="{% static 'images/slideshow/church_workers.avif' %}" class="img-fluid" alt="">
 
       <div class="slick-bottom">
           <div class="container">
@@ -63,7 +63,7 @@
   </div>
 
   <div class="slick-custom">
-      <img src="{% static 'images/slideshow/two-business-partners-working-together-office-computer.jpeg' %}" class="img-fluid" alt="">
+      <img src="{% static 'images/slideshow/kids_church.avif' %}" class="img-fluid" alt="">
 
       <div class="slick-bottom">
           <div class="container">
@@ -130,29 +130,34 @@
     <div class="container">
         
         {% for event in events %}
-        <div class="row py-4 event">
-            <div class="col-sm-5 eventImage">
-                <a href="{% url 'event_details' event.id %}">
-                    <img src="{% static 'images/product/evan-mcdougall-qnh1odlqOmk-unsplash.jpeg' %}" class="product-image" alt="">
-                    
-                </a>
-                <div class="event-cross-date">
-                    <div>
+            {% comment %} {% if event.event_type == "HomePage" %} {% endcomment %}
+            <div class="row py-4 event">
+                <div class="col-sm-5 eventImage">
+                    <a href="{% url 'event_details' event.id %}">
+                        <img src="{% static 'images/baby_dedication.png' %}" class="product-image" alt="">
+
+                    </a>
+                    <div class="event-cross-date">
+                        <div>
+                            {{ event.start_date|date:'M' }}
+                        </div>
+                        <div style="font-size: 40px; line-height: 1;">
+                            {{ event.start_date|date:'d' }}
+                        </div>
                     </div>
-                    <div></div>
                 </div>
-            </div>
-            <div class="col eventInfo d-flex">
-                <div>
-                    <h5 class="product-title mb-0">
-                        <a href="{% url 'event_details' event.id %}" class="product-title-link">{{ event.title }}</a>
-                    </h5>
+                <div class="col eventInfo d-flex">
+                    <div>
+                        <h5 class="product-title mb-0">
+                            <a href="{% url 'event_details' event.id %}" class="product-title-link">{{ event.title }}</a>
+                        </h5>
+                    
+                        <p class="product-p">{{ event.event_type }} </p>
+                    </div>
                 
-                    <p class="product-p">{{ event.event_type }} </p>
                 </div>
-            
             </div>
-        </div>
+            {% comment %} {% endif %} {% endcomment %}
         {% empty %}
         <p>No events available.</p>
         {% endfor %}

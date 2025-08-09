@@ -43,8 +43,8 @@
 }
   
 .event-cross-date {
-    background: rgba(61, 59, 77, 1);
-    font-size: 15px !important;
+    background: rgba(61, 59, 77, 0.849);
+    font-size: 30px !important;
     z-index: 1;
   
     border: none;
@@ -57,6 +57,7 @@
     align-items: center;
     position: absolute;
     right: 0px;
+    bottom: 0px;
 }
 
 /* .social-icon-link::before {
