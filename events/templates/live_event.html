@@ -1,50 +1,114 @@
-
 {% extends "base.html" %}
 {% load static %}
+
+{% block title %} 
+    <title>Virtual Church : Live Events</title>
+{% endblock %}
+
 {% block content %}
-{% block title %} <title>Virtual Church : Live Events</title>{% endblock %}
 
-<header class="site-header section-padding d-flex justify-content-center align-items-center">
-    <div class="container">
-        <div class="row">
-
-            <div class="col-lg-10 col-12">
-                <h1>
-                    <span class="d-block text-dark">Live Events</span>
-                </h1>
-            </div>
-        </div>
-    </div>
-</header>  
 <section class="product-detail section-padding">
     <div class="container">
         <div class="row">
-            <h2 class="mb-5"> <span>{{ live_stream.title }}</span></h2>
             {% if live_stream %}
-            {% with live_stream.stream_url|slice:"32:" as video_id %}
-            <div style="position: relative; width: 100%; padding-bottom: 56.25%; background: #000; overflow: hidden;">
-                <iframe 
-                    src="https://www.youtube.com/embed/{{ video_id }}" 
-                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" 
-                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
-                    allowfullscreen>
-                </iframe>
-            </div>
-            
+            <h2 class="mb-3">Live Events - <span class="text-secondary">{{ live_stream.title }}</span></h2>
+                
+                <!-- Display event time info -->
+                <p class="text-muted mb-4">
+                    {% if live_stream.is_live and live_stream.start_date <= now and live_stream.end_date >= now %}
+                        🔴 <strong>Live Now</strong> (Started {{ live_stream.start_date|date:"F j, Y, g:i a" }})
+                    {% elif live_stream.is_live %}
+                    🔴 <strong>Live Now</strong> (Started {{ live_stream.start_date|date:"F j, Y, g:i a" }})
+                    {% else %}
+                        ⏳ <strong>Scheduled Live</strong> (Ends {{ live_stream.end_date|date:"F j, Y, g:i a" }})
+                    {% endif %}
+                </p>
 
-            <div class="col-lg-4 mb-lg-0 mb-4 col-12">
-               
-            </div>
-            {% endwith %}
+                <!-- YouTube Embed -->
+                {% with live_stream.stream_url|slice:"32:" as video_id %}
+                    <div style="position: relative; width: 100%; padding-bottom: 56.25%; background: #000; overflow: hidden;">
+                        <iframe 
+                            src="https://www.youtube.com/embed/{{ video_id }}" 
+                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" 
+                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
+                        
+                    </div>
+                   
+                {% endwith %}
+                    
+                <!-- Optional: Event Description -->
+                <div class="mt-4">
+                    <p>{{ live_stream.description }}</p>
+                </div>
+
             {% else %}
-            <div class="col-12">
-                <h2 class="mb-5">There is currently no live streaming.</h2>
-            </div>
-
+                <div class="col-12 text-center">
+                    <h2 class="mb-5">There are no live events at the moment.</h2>
+                    <p>Check back later or view our upcoming events.</p>
+                </div>
             {% endif %}
         </div>
     </div>
-</section>
+    {% if live_stream %}
+    <section class="contact section-padding">
+        <div class="container">
+            <div class="row">
+                
+                <div class="col-lg-6 col-12">
+                    <h2 class="mb-4"><span>Testimony</span></h2>
+                    <form method="post" class="contact-form me-lg-5 pe-lg-3" role="form">
+                        {% csrf_token %}
+                    
+                        <div class="form-floating">
+                            {{ form.full_name }}
+                            <label for="name">Full name</label>
+                        </div>
+                    
+                        <div class="form-floating my-4">
+                            {{ form.email }}
+                            <label for="email">Email address</label>
+                        </div>
+                    
+                        <div class="form-floating mb-4">
+                            {{ form.message }}
+                            <label for="message">Tell us about your Testimony</label>
+                        </div>
+                    
+                        <div class="col-lg-5 col-6">
+                            <button type="submit" class="form-control">Send</button>
+                        </div>
+                    </form>
+                    
+                    
+                    
+                </div>
 
-    
-{% endblock content %}
+                <div class="col-lg-6 col-12 mt-5 ms-auto">
+                   
+                        <h4 class="mb-3">Shared Testimonies</h4>
+                        <div style="max-height: 400px; overflow-y: auto;">
+                            {% for testimony in testimonies %}
+                                <div class="border p-3 mb-3 rounded bg-light">
+                                    <div class="d-flex align-items-center">
+                                        <strong>{{ testimony.full_name }} - </strong>
+                                        <small class="text-muted ms-2">{{ testimony.submitted_at|date:"F j, Y, g:i A" }}</small>
+                                      </div>
+                                      
+                                    <small class="mt-2 mb-0"> 💬 {{ testimony.message }}</small>
+                                </div>
+                            {% empty %}
+                                <p>No testimonies yet.</p>
+                            {% endfor %}
+                        </div>
+                    
+                </div>
+
+            </div>
+        </div>
+    </section>
+    {% else %}
+    {% endif %}
+</section>
+{% endblock %}

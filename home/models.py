@@ -38,20 +38,20 @@ class Donation(models.Model):
     def __str__(self):
         return f"{self.user.username if self.user else 'Anonymous'} - ${self.amount}"
 
-# Community Resources (Bible Study, Events, Forums)
+class ResourceType(models.Model):
+    name = models.CharField(max_length=100, unique=True)
+
+    def __str__(self):
+        return self.name
+
 class Resource(models.Model):
-    RESOURCE_TYPES = (
-        ('bible_study', 'Bible Study'),
-        ('event', 'Event'),
-        ('forum', 'Forum Discussion'),
-    )
+    resource_type = models.ForeignKey(ResourceType, on_delete=models.CASCADE, related_name='resources')
     title = models.CharField(max_length=255)
     description = models.TextField()
-    resource_type = models.CharField(max_length=15, choices=RESOURCE_TYPES)
     files = models.FileField(upload_to='learning_files', blank=True)
     uploaded_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"{self.get_resource_type_display()}: {self.title}"
+        return f"{self.resource_type.name}: {self.title}"
 
 

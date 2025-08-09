@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from datetime import date
-from .models import  Resource, Sermon
+from .models import  Resource, ResourceType, Sermon
 from events.models import Event
 from django.shortcuts import render, get_object_or_404
 from django.utils.timezone import now
@@ -12,9 +12,23 @@ def index(request):
 def about(request):
     return render(request, 'about.html')
 
+
 def resources(request):
-    resources = Resource.objects.all()
-    return render(request, 'resources.html', {'resources': resources})
+    type_id = request.GET.get('type')
+    
+    if type_id:
+        resources = Resource.objects.filter(resource_type__id=type_id)
+    else:
+        resources = Resource.objects.all()
+
+    resource_types = ResourceType.objects.all()
+
+    return render(request, 'resources.html', {
+        'resources': resources,
+        'resource_types': resource_types,
+        'selected_type': int(type_id) if type_id else None
+    })
+
 
 
 def sermon_list(request):
